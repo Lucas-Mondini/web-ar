@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <!-- carrega script aframe -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <!-- carrega script zappar -->
+    <script src="https://libs.zappar.com/zappar-aframe/2.2.2/zappar-aframe.js"></script>
+  </head>
+  <body>
+    <script>
+        AFRAME.registerComponent('balenciaga', {
+            tick: function () {
+            }
+        });
+    </script>
+    <a-scene>
+      <!-- carrega os assets -->
+        <a-assets>
+            <a-asset-item id="balenciaga" src="/public/balenciaga_sunglasses/scene.gltf"></a-asset-item>
+            <a-asset-item id="sunglasses_free" src="/public/sunglasses_free/scene.gltf"></a-asset-item>
+            <a-asset-item id="klitzke" src="/public/Aviator_Sunglasses_Aviator_Glasses/glass_test.gltf"></a-asset-item>
+        </a-assets>
+      <!-- carrega os assets -->
+
+        <!-- pede permissão da camera para o zappar -->
+        <a-entity zappar-permissions-ui id="permissions"><a-entity text="value: Please reload the page, accepting the camera permissions." position="0 0 -2"></a-entity></a-entity>
+        <!-- cria a entidade de camera -->
+        <a-entity camera zappar-camera="user-facing: true;"></a-entity>
+        <!-- cria a entidade de face -->
+        <a-entity zappar-face id="face_obj">
+            <a-entity zappar-head-mask="face: #face_obj;"></a-entity>
+        </a-entity>
+        <a-entity zappar-face-landmark="face: #face_obj; target: nose-bridge" id="zappar-face-landmark">
+          <a-entity  balenciaga scale="7 7 7" position="0 -0.6 -0.4" gltf-model="#klitzke" id="balenciaga_instance"></a-entity>
+        </a-entity>
+    </a-scene>
+  </body>
+</html>
